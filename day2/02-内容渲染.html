@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <!-- 希望Vue能够控制下面这个div 帮我们把数据填充到div内部 -->
+    <div id="app">
+       <p v-text="username"></p>
+       <p v-text="gender">性别</p>
+       <hr>
+       <p >姓名：{{username}}</p>
+       <p >性别：{{gender}}</p>
+       <hr>
+       <div v-text="info"></div>
+       <div>{{info}}</div>
+       <div v-html="info">哈哈</div>
+
+    </div>
+    <!-- 导入Vue库文件 在window全局有了Vue这个构造函数-->
+    <script src="./lib/vue-2.6.12.js"></script>
+    <!-- 创建Vue的实例对象 -->
+    <script>
+        //创建Vue的实例对象
+        new Vue({
+            //el 属性是固定的写法，表示当前要控制页面上的哪个区域，接收的值是一个选择器
+            el:'#app',
+            //data 对象就是要渲染到页面上的数据
+            data:{
+                username:'哈哈',
+                gender:'man',
+                info:'<h4 style="color:red;font-size:15px">呼呼呼，我来也！！！</h4>'
+            }
+
+        })
+    </script>
+</body>
+</html>
