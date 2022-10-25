@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./lib/bootstrap.css">
+    <title>Document</title>
+</head>
+<body>
+    
+    <!-- 希望Vue能够控制下面这个div 帮我们把数据填充到div内部 -->
+    <div id="app">
+      <table class="table table-bordered table-hover table-striped">
+        <thead>
+            <th>索引</th>
+            <th>Id</th>
+            <th>姓名</th>
+        </thead>
+        <tbody>
+            <!-- 官方建议 用到v-for指令 需要绑定一个key属性，而且尽量把id作为key的值 -->
+            <!-- 官方对key的值类型，要求为字符串或数字类型 -->
+            <tr v-for="(item,index) in list" ::key="item.id" :title="item.name + index" >
+                <td>{{index}}</td>
+                <td>{{item.id}}</td>
+                <td >{{item.name}}</td>
+                
+            </tr>
+     
+        </tbody>
+      </table>
+
+    </div>
+    <!-- 导入Vue库文件 在window全局有了Vue这个构造函数-->
+    <script src="./lib/vue-2.6.12.js"></script>
+    <!-- 创建Vue的实例对象 -->
+    <script>
+        //创建Vue的实例对象
+        new Vue({
+            //el 属性是固定的写法，表示当前要控制页面上的哪个区域，接收的值是一个选择器
+            el:'#app',
+            //data 对象就是要渲染到页面上的数据
+            data:{
+                list:[
+                    {id:1,name:"哈哈"},
+                    {id:2,name:"呼呼"},
+                    {id:3,name:"嘿嘿"},
+                    {id:4,name:"略略"}
+                ]
+            }
+
+        })
+    </script>
+</body>
+</html>
