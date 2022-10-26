@@ -20,6 +20,7 @@
         <tbody>
             <!-- 官方建议 用到v-for指令 需要绑定一个key属性，而且尽量把id作为key的值 -->
             <!-- 官方对key的值类型，要求为字符串或数字类型 -->
+            <!-- key的值是不能重复的，否则会终端报错：Duplicate keys detected -->
             <tr v-for="(item,index) in list" ::key="item.id" :title="item.name + index" >
                 <td>{{index}}</td>
                 <td>{{item.id}}</td>
