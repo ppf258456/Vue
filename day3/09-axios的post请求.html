@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="postinfo">POST</button>
+    <button id="getbtn">GET</button>
+
+
+    <script src="./lib/axios.js"></script>
+    <script>
+        document.getElementById('postinfo').addEventListener('click',async()=>{
+        //如果调用缪个方法的返回值是Promise实例，则前面可以添加 await
+        //await 只能用在被async “修饰”的方法中
+         const  {data} =    await axios({
+                method:'POST',
+                url:'http://www.liulongbin.top:3006/api/post',
+                data:{
+                    name:'aa',
+                    age:20
+                }
+            })
+            console.log(data);
+        })
+        document.getElementById('getbtn').addEventListener('click',async()=>{
+            //解构赋值进行重命名  使用冒号  ：
+            //1 调用axios之后，shiyongasync/await 进行简化
+            //2 使用结构复制，从axios封装的大对象中，把data属性结构出来
+            //3 把结构出来的data属性 使用 冒号 进行重命名，一般都重命名为{data :     res}
+            const {data:res}= await axios({
+                method:'GET',
+                url:'http://www.liulongbin.top:3006/api/getbooks'
+            })
+            console.log(res.data);
+        })
+    </script>
+</body>
+</html>

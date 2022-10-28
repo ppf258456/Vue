@@ -8,7 +8,7 @@
 </head>
 <body>
     <div id="app">
-        <input type="text" v-model.lazy="username" placeholder="请输入用户名">
+        <input type="text" v-model="username" placeholder="请输入用户名">
     </div>
    <script src="./lib/vue-2.6.12.js"></script>
    <script src="./lib/jquery-v3.6.0.js"></script>
@@ -16,19 +16,19 @@
     new Vue({
         el:"#app",
         data:{
-            username:''
+            username:'admin'
         },
         watch:{
-            //侦听器本质上是一个函数，要建时哪个数据的变化，就把数据名作为方法即可
-            //新值在前，旧值在后
-            username(newVal){
-                if(newVal === '')
-                return 
-
-                //1 调用jQuery的Ajax发起请求，判断 newVal是否被占用
-                $.get('https://www.escook.cn/api/finduser/'+newVal,function(res){
+            // 定义对象格式的侦听器
+            username:{
+                //侦听器处理函数
+                handler(newVal,oldVal){
+                    $.get('https://www.escook.cn/api/finduser/'+newVal,function(res){
                      console.log(res);
-                })
+                })  
+                },
+                //进入页面会立即触发一次
+                immediate:true
             }
 
         }
